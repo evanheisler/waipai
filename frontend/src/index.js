@@ -1,20 +1,26 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './reducers';
 import App from './screens/App';
 import * as serviceWorker from './serviceWorker';
+import {
+  ApolloProvider,
+  ApolloClient,
+  HttpLink,
+  InMemoryCache,
+} from '@apollo/client';
 
-const store = configureStore({
-  reducer: rootReducer,
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  // link: new HttpLink({
+  //   uri: 'https://48p1r2roz4.sse.codesandbox.io',
+  // }),
 });
 
 render(
   <React.StrictMode>
-    <Provider store={store}>
+    <ApolloProvider client={client}>
       <App />
-    </Provider>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

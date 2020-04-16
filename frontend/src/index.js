@@ -14,7 +14,7 @@ const client = new ApolloClient({
   link: new HttpLink({
     uri:
       process.env.NODE_ENV === 'production'
-        ? 'http://api.waipai.io/graphql'
+        ? 'https://waipai-prod.herokuapp.com/graphql'
         : null,
   }),
 });

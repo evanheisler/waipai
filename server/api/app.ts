@@ -1,5 +1,6 @@
-import { use } from 'nexus'
+import cors from 'cors'
+import { use, server } from 'nexus'
 import { prisma } from 'nexus-plugin-prisma'
 
-// Enables the Prisma plugin
 use(prisma())
+server.express.use(cors())

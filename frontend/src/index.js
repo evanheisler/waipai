@@ -11,9 +11,12 @@ import {
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  // link: new HttpLink({
-  //   uri: 'https://48p1r2roz4.sse.codesandbox.io',
-  // }),
+  link: new HttpLink({
+    uri:
+      process.env.NODE_ENV === 'production'
+        ? 'https://waipai-prod.herokuapp.com/graphql'
+        : null,
+  }),
 });
 
 render(

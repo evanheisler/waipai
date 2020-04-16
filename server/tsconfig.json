@@ -2,8 +2,11 @@
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
-    "lib": ["esnext"],
+    "lib": [
+      "esnext"
+    ],
     "strict": true,
+    "esModuleInterop": true
     // [1] nexus managed
     // "rootDir": "api",
     // "outDir": "/Users/evanheisler/dev/waipai/server/node_modules/.build",
@@ -11,7 +14,6 @@
   // [1] nexus managed
   // "include": "api"
 }
-
 // [1] nexus managed
 //
 // These settings are managed by nexus.

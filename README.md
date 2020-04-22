@@ -1,68 +1,43 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# WAI PAI
 
-## Available Scripts
+Wai pai is a lightweight publishing platform for everything from micro-blogging, todo lists, code snippets, recipes, journaling — whatever you need it to be. No bloated CMS or social media dumpster fires. Just a place to jot down ideas, stash away notes, or express yourself in peace.
 
-In the project directory, you can run:
+Each accounts' content is private by default, but can be shared publicly to their profile.
 
-### `yarn start`
+In Maori, "wai pai" translates to _good water_.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Requirements
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Node.js with NPM or Yarn (for running a React app)
+- (optional) Docker & PostgreSQL for local development
 
-### `yarn test`
+## Quickstart
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Head over to [Hasura's website](https://hasura.io/) and follow their 30 second Heroku setup
 
-### `yarn build`
+```javascript
+$ git clone git@github.com:evanheisler/waipai.git && cd waipai
+$ yarn
+$ cp .env.example .env // update API variable to your heroku instance
+$ yarn start
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Local Development
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+These steps will give you a local setup, as opposed to developing against a Heroku instance.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Follow the Quickstart steps, but for your `.env` API variable, use `http://localhost:8080/v1/graphql`. Confirm that `docker` and `psql` are running, then:
 
-### `yarn eject`
+```javascript
+$ cp docker-run.sh.example docker-run.sh // update database_url with your name, password and database instance
+$ ./docker-run.sh
+$ docker ps // confirm Hasura container is running
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+You should now have a server at visit http://localhost:8080 and a web client at visit http://localhost:3000.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Running Tests
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Deployment
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Using webhooks, new tags will deliver bundles to Netlify (frontend) and Heroku (backend).

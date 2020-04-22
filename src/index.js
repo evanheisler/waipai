@@ -12,10 +12,7 @@ import {
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri:
-      process.env.NODE_ENV === 'production'
-        ? 'https://waipai-prod.herokuapp.com/graphql'
-        : null,
+    uri: process.env.REACT_APP_API_ENDPOINT,
   }),
 });
 

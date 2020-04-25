@@ -2,25 +2,31 @@ import React from 'react';
 import { render } from 'react-dom';
 import App from './screens/App';
 import * as serviceWorker from './serviceWorker';
-import {
-  ApolloProvider,
-  ApolloClient,
-  HttpLink,
-  InMemoryCache,
-} from '@apollo/client';
+import { Auth0Provider } from './hooks/react-auth0-spa';
+import { BrowserRouter } from 'react-router-dom';
 
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: new HttpLink({
-    uri: process.env.REACT_APP_API_ENDPOINT,
-  }),
-});
+import history from './utils/history';
+
+const onRedirectCallback = appState => {
+  history.push(
+    appState && appState.targetUrl
+      ? appState.targetUrl
+      : window.location.pathname
+  );
+};
 
 render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
+    <BrowserRouter>
+      <Auth0Provider
+        domain={process.env.REACT_APP_AUTH_DOMAIN}
+        client_id={process.env.REACT_APP_AUTH_CLIENT_ID}
+        redirect_uri={window.location.origin}
+        audience={process.env.REACT_APP_AUTH_AUDIENCE}
+        onRedirectCallback={onRedirectCallback}>
+        <App />
+      </Auth0Provider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

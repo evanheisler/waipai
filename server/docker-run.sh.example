@@ -1,0 +1,7 @@
+#! /bin/bash
+docker run -d -p 8080:8080 \
+       -e HASURA_GRAPHQL_DATABASE_URL=postgres://username:password@host.docker.internal:5432/dbname \
+       -e HASURA_GRAPHQL_ENABLE_CONSOLE=false \
+       -e HASURA_GRAPHQL_ADMIN_SECRET=supersecretapipassword \
+       -e HASURA_GRAPHQL_JWT_SECRET=<get config at https://hasura.io/jwt-config/>
+       hasura/graphql-engine:v1.1.1

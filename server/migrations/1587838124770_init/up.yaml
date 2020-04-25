@@ -1,0 +1,82 @@
+- args:
+    tables:
+    - delete_permissions:
+      - permission:
+          filter:
+            author_id:
+              _eq: X-Hasura-User-Id
+        role: user
+      insert_permissions:
+      - permission:
+          check:
+            author_id:
+              _eq: X-Hasura-User-Id
+          columns:
+          - is_public
+          - post_id
+          - author_id
+          - content
+          - title
+          - created_at
+          - updated_at
+          set:
+            author_id: x-hasura-User-Id
+        role: user
+      object_relationships:
+      - name: user
+        using:
+          foreign_key_constraint_on: author_id
+      select_permissions:
+      - permission:
+          columns:
+          - is_public
+          - post_id
+          - author_id
+          - content
+          - title
+          - created_at
+          - updated_at
+          filter:
+            _or:
+            - is_public:
+                _eq: true
+            - author_id:
+                _eq: X-Hasura-User-Id
+        role: user
+      table:
+        name: posts
+        schema: public
+      update_permissions:
+      - permission:
+          columns:
+          - content
+          - is_public
+          - title
+          filter:
+            author_id:
+              _eq: X-Hasura-User-Id
+        role: user
+    - select_permissions:
+      - permission:
+          columns:
+          - id
+          - user_name
+          filter: {}
+        role: user
+      table:
+        name: users
+        schema: public
+      update_permissions:
+      - permission:
+          columns:
+          - email
+          - full_name
+          - user_name
+          filter:
+            id:
+              _eq: X-Hasura-User-Id
+          set:
+            id: x-hasura-User-Id
+        role: user
+    version: 2
+  type: replace_metadata

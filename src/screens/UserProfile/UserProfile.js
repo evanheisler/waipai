@@ -1,13 +1,9 @@
 import React, { Fragment } from 'react';
-import { useAuth0 } from '../../hooks/react-auth0-spa';
-import CreatePost from '../../components/CreatePost';
+import { useAuth0 } from 'hooks/react-auth0-spa';
+import UserPosts from './components/UserPosts';
 
 const Profile = () => {
-  const { loading, user } = useAuth0();
-
-  if (loading || !user) {
-    return <div>Loading...</div>;
-  }
+  const { user } = useAuth0();
 
   return (
     <Fragment>
@@ -16,7 +12,7 @@ const Profile = () => {
       <h2>{user.name}</h2>
       <p>{user.email}</p>
 
-      <CreatePost />
+      <UserPosts />
     </Fragment>
   );
 };

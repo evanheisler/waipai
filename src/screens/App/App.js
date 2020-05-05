@@ -7,7 +7,7 @@ import {
   HttpLink,
   InMemoryCache,
 } from '@apollo/client';
-import './App.scss';
+import { Container, Grid } from '@material-ui/core';
 
 import Navigation from 'components/Navigation';
 import Routes from 'routes';
@@ -50,7 +50,12 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <Navigation />
-      <Routes />
+
+      <Container maxWidth={false}>
+        <Grid container spacing={5}>
+          <Routes />
+        </Grid>
+      </Container>
     </ApolloProvider>
   );
 };

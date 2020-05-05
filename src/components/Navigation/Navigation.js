@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from 'hooks/react-auth0-spa';
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
-import UserMenu from './components/UserMenu';
 import { useStyles } from './styles';
 
 const Navigation = () => {
@@ -32,7 +31,6 @@ const Navigation = () => {
               </Button>
             </div>
           )}
-          {isAuthenticated && <UserMenu />}
         </Toolbar>
       </AppBar>
       <Toolbar />

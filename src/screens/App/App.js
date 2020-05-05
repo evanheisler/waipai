@@ -53,9 +53,7 @@ const App = () => {
 
       <Container maxWidth={false}>
         <Grid container spacing={5}>
-          <Grid item sm={12} md={7}>
-            <Routes />
-          </Grid>
+          <Routes />
         </Grid>
       </Container>
     </ApolloProvider>

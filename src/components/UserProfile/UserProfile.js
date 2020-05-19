@@ -1,7 +1,6 @@
 import React from 'react';
 import { useAuth0 } from 'hooks/react-auth0-spa';
 import { Avatar } from '@material-ui/core';
-import UserMenu from 'components/Navigation/components/UserMenu';
 import { useStyles } from './styles';
 
 const UserProfile = () => {
@@ -14,7 +13,6 @@ const UserProfile = () => {
 
       <h2>{user.name}</h2>
       <p>{user.email}</p>
-      <UserMenu />
     </div>
   );
 };

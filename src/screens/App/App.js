@@ -8,11 +8,13 @@ import {
   InMemoryCache,
 } from '@apollo/client';
 import { Container, Grid } from '@material-ui/core';
+import { useStyles } from './styles';
 
-import Navigation from 'components/Navigation';
 import Routes from 'routes';
 
 const App = () => {
+  const classes = useStyles();
+
   const [accessToken, setAccessToken] = useState('');
   const { getTokenSilently, loading: auth0Loading } = useAuth0();
   const httpLink = new HttpLink({
@@ -49,10 +51,8 @@ const App = () => {
 
   return (
     <ApolloProvider client={client}>
-      <Navigation />
-
       <Container maxWidth={false}>
-        <Grid container spacing={5}>
+        <Grid container spacing={5} className={classes.base}>
           <Routes />
         </Grid>
       </Container>
